@@ -7,13 +7,15 @@ import { ConexCategoriaService,categoria } from 'src/app/services/conexiones/con
 })
 export class ModificarCategoriaComponent implements OnInit {
   detalle:any={};
-
+/*
   cargar:any={
 
     pk_nombre_cat:'',
     id_categoria:0,
     descripcion:''
   };
+  */
+  cargar:any=[];
   id_entrada:string='';
   categoria:categoria={
 

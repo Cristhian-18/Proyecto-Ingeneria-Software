@@ -11,33 +11,26 @@ export class TablaCategoriaComponent implements OnInit {
   @Input() dataEntrante:any;
   @Input() dataEntrante2:any;
   index:number=0;
-  ListaCategoria:categoria[]=[];
+  ListaCategoria:any=[];
   index2:number=0;
 
-  constructor(private Conexcategoria:ConexCategoriaService) { }
-  ngOnInit(): void {
-    this.listaCategoria();
+  constructor(private Conexcategoria:ConexCategoriaService) {
+    console.log("Servicio ULTIMA NOVEDAD");
+    this.Conexcategoria.getCategoria().subscribe(
+      res => {
+        console.log(res)
+        this.ListaCategoria = res;
+      },
+      err => console.log(this.ListaCategoria)
+    );
   }
-  listaCategoria()
-{
-  console.log("Servicio ULTIMA NOVEDAD");
-  this.Conexcategoria.getCategoria().subscribe(
-    res=>{
-      console.log(res)
-      this.ListaCategoria=<any>res;
-           
-    },
-    err => console.log(err)
-    
-  );
-
-  } 
+   
 
   eliminar(id:string){
     this.Conexcategoria.deleteCategoria(id).subscribe(
     res=>{
       console.log('Usuario Eliminado');
-      this.listaCategoria();
+      
     },
     err => console.log(err)
       
@@ -62,4 +55,9 @@ export class TablaCategoriaComponent implements OnInit {
     console.log(this.index2);
     this.getIndex(this.index2);
   }
+
+  ngOnInit(): void {
+  
+  }
+
 }

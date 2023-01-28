@@ -10,7 +10,7 @@ import { ConexProductosService, Producto } from 'src/app/services/conexiones/con
 export class ModificarComponent implements OnInit {
 
   detalle:any={};
-  
+  /*
   cargar:any={
     
       pk_id_producto:0,
@@ -28,10 +28,11 @@ export class ModificarComponent implements OnInit {
     
     
   };
+*/
+  cargar:any=[];
 
 
-
-  ListaMarca:Marca[]=[];
+  ListaMarca: any=[];
 
   modal_admin:boolean  = false;
 
@@ -41,7 +42,7 @@ export class ModificarComponent implements OnInit {
       this.ConexProdcutoService.getUnProducto(data).subscribe(
        res=>{
                
-         this.cargar=<any>res;               
+         this.cargar=res;               
        },
        err => console.log('Hola')
       );
@@ -54,26 +55,18 @@ export class ModificarComponent implements OnInit {
   ngOnInit(): void {
     this.listarMarcas();
   }
-  /*
+  
   listarMarcas()
   {
   console.log("Servicio Componente Modificar");
   this.ConexMarca.getMarcas().subscribe(
     res=>{
      
-      this.ListaMarca=<any>res;
+      this.ListaMarca=res;
            
     },
     err => console.log(err)  
   );
-  } */
-  async listarMarcas() {
-    console.log("Servicio Modificar PRODUCTOS TABLAS");
-    try {
-      const response =  await this.ConexProdcutoService.getProdcuto().subscribe();
-      this.ListaMarca = <any> response;
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  } 
+
 }

@@ -8,7 +8,7 @@ import { ConexMarcaService,Marca } from 'src/app/services/conexiones/conex-marca
 })
 export class ModificarMarcaComponent implements OnInit {
   detalle:any={};
-  
+  /*
   cargar:any={
     id:0,
     name:'',
@@ -16,15 +16,16 @@ export class ModificarMarcaComponent implements OnInit {
     
     
   };
+*/
+cargar:any=[];
 
-  
   constructor( private conexion:ConexMarcaService) {
 
     this.conexion.disparadorDetalle.subscribe(data=>{
        this.conexion.getUnmARCA(data).subscribe(
         res=>{
           console.log(res)         
-          this.cargar=<any>res;               
+          this.cargar=res;               
         },
         err => console.log('Hola')
        );

@@ -6,7 +6,7 @@ import{HttpClient} from '@angular/common/http';
 })
 export class ConexCategoriaService {
   @Output() disparadorDetalle: EventEmitter<any> = new EventEmitter();
-  url='http://34.27.188.160//categoria';
+  url='http://34.27.188.160/categoria';
   constructor(private http:HttpClient) { }
   
   //getProdcut

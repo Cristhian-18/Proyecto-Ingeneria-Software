@@ -11,7 +11,7 @@ export class TablaProductoComponent implements OnInit {
   @Input() dataEntrante:any;
   @Input() dataEntrante2:any;
 
-  ListaProducto:Producto[]=[];
+  ListaProducto:any=[];
   index:number=0;
   index2:number=0;
   constructor(private ConexProdcutoService:ConexProductosService) {
@@ -29,7 +29,7 @@ export class TablaProductoComponent implements OnInit {
     res=>{
       
       console.log(res)
-      this.ListaProducto=<any>res;
+      this.ListaProducto=res;
       console.log("Servicio ULTIMA AA");
     },
     err => console.log(err)

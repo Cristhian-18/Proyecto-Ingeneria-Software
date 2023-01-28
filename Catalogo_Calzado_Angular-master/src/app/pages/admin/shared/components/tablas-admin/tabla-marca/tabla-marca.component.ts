@@ -23,18 +23,13 @@ export class TablaMarcaComponent implements OnInit {
   {
     console.log("Servicio ULTIMA NOVEDAD");
       this.ConexProdcutoService.getMarcas().subscribe(
-        (res: any) => {
-          
-          if (res.length === 0) {
-            this.ListaMarca = [];
-            console.log("No hay datos disponibles");
-          } else {
+   
+          res => {
+            console.log(res)
             this.ListaMarca = res;
-            console.log("Servicio ULTIMA AA");
-          }
-        },
-        err => console.log(err)
-      );
+          },
+          err => console.log(this.ListaMarca)
+        );
     } 
 
   eliminar(id:number){
