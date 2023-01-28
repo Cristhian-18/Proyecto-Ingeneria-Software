@@ -1,0 +1,53 @@
+<div class="category-page">
+    <!-- Productos de hombres-->
+    <section class="products p-t-small">
+        <div class="container">
+            <header>
+                <div class="row d-flex align-items-center">
+                    <div class="col-md-6">
+                        <h1 class=" animated fadeIn t-stroke-shadow heading-line">Catálogo de hombre</h1>
+                    </div>
+                    <div class="col-md-6 filters d-flex justify-content-end">
+                        <app-filtro></app-filtro>
+                    </div>
+                </div>
+            </header>
+
+            <div class="my-5" >
+                <div  class="row"  >
+                    <div  class="col-lg-3 col-md-4 col-6" *ngFor="let ListaProducto of ListaHombe">
+                        <div class="item text-center"  >
+                            <div class="card shadow-sm bg-image" >
+                                <img src="{{ListaProducto.img}}"
+                                    class="img-fluid">
+                                <div class="card-body">
+                                    <div class="overlay p-0 d-flex align-items-center justify-content-center"><a
+                                            class="wishlist"><i class="fa fa-heart"></i></a>
+                                        <ul class="list-unstyled mb-0">
+                                            <button (click)="abrirmodal()"  type="button" class="btn btn-primary btn-lg px-4 mb-2"
+                                                    data-toggle="modal" data-target="#modal1" (click)="getNombres(ListaProducto.pk_id_producto)">Detalles</button>
+                                        </ul>
+                                    </div>
+                                    <div class="card-title">
+                                        <p class="generoproducto">{{ListaProducto.genero}}</p>
+                                        <h4 class="nombreproducto">{{ListaProducto.nombre_producto}}</h4>
+                                        <ul class="price list-inline">
+                                            <li class="list-inline-item"> <span class="price">$ {{ListaProducto.costo}}</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <app-paginacion-catalogo></app-paginacion-catalogo>
+        </div>
+    </section>
+</div>
+
+<!--Logica de abrir modal de informacion del producto-->
+
+<div *ngIf="info_modal==true">
+    <app-info-modals></app-info-modals>
+</div>

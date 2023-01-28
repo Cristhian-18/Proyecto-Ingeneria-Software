@@ -1,0 +1,26 @@
+<app-navbar></app-navbar>
+<div class="favorites-container">
+    <h1 class="favorites-title">Mis favoritos</h1>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4" *ngFor="let favorito of allfavoritos">
+          <div class="card shadow-sm bg-image">
+            <img class="card-img-top" [src]="favorito.producto.img">
+            <div class="card-body">
+              <h5 class="card-title">{{favorito.producto.nombre_producto}}</h5>
+              <p class="card-text">{{favorito.producto.descripcion}}</p>
+              <p class="card-text">Precio: {{favorito.producto.costo}}</p>
+              <button class="btn btn-danger" (click)="deleteFavorito(favorito.id_favorito)">Quitar de favoritos</button>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="allfavoritos.length == 0">
+          <p class="empty-favorites">No tiene nada agregado en la lista de favoritos</p>
+        </div>
+      </div>
+    </div>
+
+</div>
+
+<app-footer></app-footer>

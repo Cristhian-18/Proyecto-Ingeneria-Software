@@ -1,0 +1,49 @@
+p {
+  font-size: 15px;
+}
+
+
+/**** Css de boton ****/
+.btn {
+  border-color: #1d67c9;
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  background-image: -webkit-linear-gradient(45deg, #1d67c9 50%, transparent 50%);
+  background-image: linear-gradient(45deg, #1d67c9 50%, transparent 50%);
+  background-position: 100%;
+  background-size: 400%;
+  -webkit-transition: background 500ms ease-in-out;
+  transition: background 500ms ease-in-out;
+}
+
+.btn:hover {
+  background-position: 0;
+}
+
+
+/***** CSS de cartas ****/
+.card {
+  transition: all 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.02);
+}
+
+.card-body .onsale .badge {
+  background: #000;
+  font-size: 12px;
+  padding: 5px 14px;
+  top: 0px;
+  position: absolute;
+  left: 0px;
+}
+
+/* Hace que la imagen del slide se ponga de color original en cierto
+  pixeles de la pantalla */
+@media (max-width: 740px) {
+  .bg-2 {
+    padding-bottom: 500px;
+    padding: -20px;
+  }
+}
