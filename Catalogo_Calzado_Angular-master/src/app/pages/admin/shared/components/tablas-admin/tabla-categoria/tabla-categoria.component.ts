@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ConexCategoriaService,categoria } from 'src/app/services/conexiones/conex-categoria/conex-categoria.service';
-
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-tabla-categoria',
@@ -15,6 +15,11 @@ export class TablaCategoriaComponent implements OnInit {
   index2:number=0;
 
   constructor(private Conexcategoria:ConexCategoriaService) {
+     this.listarCategoria();
+  }
+   
+  listarCategoria()
+  {
     console.log("Servicio ULTIMA NOVEDAD");
     this.Conexcategoria.getCategoria().subscribe(
       res => {
@@ -23,19 +28,40 @@ export class TablaCategoriaComponent implements OnInit {
       },
       err => console.log(this.ListaCategoria)
     );
-  }
-   
-
+    }   
+  
   eliminar(id:string){
-    this.Conexcategoria.deleteCategoria(id).subscribe(
-    res=>{
-      console.log('Usuario Eliminado');
-      
-    },
-    err => console.log(err)
-      
-    );
+    swal.fire({
+      title: 'Seguro que quieres borrarlo?',
+      text: "Seguro que quieres hacer esto!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, borralo!'
+    }).then((result) => {
+      if (result.value) {
+        this.Conexcategoria.deleteCategoria(id).subscribe(
+          res => {
+            swal.fire(
+              'Eliminado!',
+              'Se ha eliminado de tu lista de Categorias.',
+              'success'
+            )
+            this.listarCategoria();
+          },
+          err => {
+            swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Algo salio mal al intetar eliminarlo!',
+            })
+          }
+        )
+      }
+    })   
   }
+  
   getNombres(id:string){
     this.dataEntrante = id;
     console.log("ID: ",id);

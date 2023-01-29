@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
 import { ConexMarcaService,Marca } from 'src/app/services/conexiones/conex-marca/conex-marca.service';
-
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-registrar-marca',
@@ -30,9 +29,35 @@ export class RegistrarMarcaComponent implements OnInit {
   ngOnInit(): void {
   }
   
-  agregarProducto(){
-    this.marca.id_Marca = (this.detalle)
-    console.log(this.marca);
-    this.conexion.addMarca(this.marca).subscribe();  
+  agregarMarcas(){
+
+    try {
+      
+      this.marca.id_Marca = (this.detalle)
+      console.log(this.marca);
+      
+      if(this.marca.id_Marca !=0 && this.marca.nombre !='' && this.marca.descripcion!=''){
+        this.conexion.addMarca(this.marca).subscribe();  
+        swal.fire({
+          icon: 'success',
+          title: 'Registro de Marca Exitoso',
+          text: 'Continuar'
+        });
+      }else{
+        swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Por Favor!! Ingrese todos los parametros'
+        });
+      }
+    } catch (error) {
+      swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Ingrese todos los parametros Por favor'
+      });
+    }
+
+   
   }
 }

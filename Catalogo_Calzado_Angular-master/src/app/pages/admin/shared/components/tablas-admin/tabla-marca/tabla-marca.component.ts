@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ConexMarcaService,Marca } from 'src/app/services/conexiones/conex-marca/conex-marca.service';
-
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-tabla-marca',
@@ -32,15 +32,37 @@ export class TablaMarcaComponent implements OnInit {
         );
     } 
 
-  eliminar(id:number){
-    this.ConexProdcutoService.deletemarca(id).subscribe(
-    res=>{
-      console.log('Usuario Eliminado');
-      this.listarMarcas();
-    },
-    err => console.log(err)
-      
-    );
+  eliminar(id:number){    
+    swal.fire({
+      title: 'Seguro que quieres borrarlo?',
+      text: "Seguro que quieres hacer esto!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, borralo!'
+    }).then((result) => {
+      if (result.value) {
+        this.ConexProdcutoService.deletemarca(id).subscribe(
+          res => {
+            swal.fire(
+              'Eliminado!',
+              'Se ha eliminado de tu lista de Marcas.',
+              'success'
+            )
+            this.listarMarcas();
+          },
+          err => {
+            swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Algo salio mal al intetar eliminarlo!',
+            })
+          }
+        )
+      }
+    })
+    
   }
   getNombres(id:number){
     this.dataEntrante = id;
