@@ -1,0 +1,21 @@
+p{
+    font-size: 15px;   
+}
+/****Estilo de cartas*****/
+.card{
+    transition: all 0.3s;
+}
+
+.card:hover{
+    transform: scale(1.02);
+}
+
+/****Estilo de botones*****/
+.btn{
+    background-color: black;
+}
+
+.btn:hover{
+    background-color: rgb(32, 107, 126);
+    color: rgb(255, 253, 253);   
+}

@@ -40,6 +40,16 @@
     min-height: 100%
 }
 
+@media (max-width:990px) {
+    .form-wrapper {
+        display: block !important;
+        padding: 80px 10px !important
+    }
+    .logo{
+        visibility: hidden;
+    }
+}
+
 @media (max-width:500px) {
     .form-wrapper {
         display: block !important;

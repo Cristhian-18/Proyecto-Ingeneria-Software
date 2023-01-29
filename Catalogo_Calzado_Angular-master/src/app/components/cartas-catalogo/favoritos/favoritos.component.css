@@ -1,31 +1,21 @@
-.favorites-container {
-    padding: 20px;
+p {
+  font-size: 15px;
 }
 
-.favorites-title {
-    text-align: center;
-    font-size: 36px;
-    font-weight: bold;
-    margin-bottom: 20px;
-}
-.card{
-  border-radius: 10px;
-  background-color: #f5f5f5;
-  border: 2px solid #ccc;
-  box-shadow: 2px 2px 10px #ccc;
-  margin: 18px;
-  padding: 18px;
-  font-size: 18px;
+/***** CSS de cartas ****/
+.card {
   transition: all 0.3s;
 }
 
-
-.card:hover{
-  transform: scale(1.07);
+.card:hover {
+  transform: scale(1.02);
 }
-.empty-favorites {
-  font-size: 18px;
-  text-align: center;
-  color: #ff0000;
-  font-weight: bold;
+
+/* Hace que la imagen del slide se ponga de color original en cierto
+  pixeles de la pantalla */
+@media (max-width: 740px) {
+  .bg-2 {
+    padding-bottom: 500px;
+    padding: -20px;
+  }
 }

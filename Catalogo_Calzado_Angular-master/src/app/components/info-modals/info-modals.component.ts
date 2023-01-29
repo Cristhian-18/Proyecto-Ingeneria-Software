@@ -84,7 +84,6 @@ export class InfoModalsComponent implements OnInit {
     }
   }
 
-
   ngOnInit(): void {
   }
 }

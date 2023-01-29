@@ -29,6 +29,7 @@ export class NavbarComponent {
   decodedToken: any;
   nombreUsuario: string | undefined;
   public userRole: boolean | undefined;
+  public admin: boolean | undefined;
   constructor(private cookieService: CookieService, private router: Router) { 
     const token = cookieService.get('token');
     //this.userRole = this.verifyRole();
@@ -38,6 +39,9 @@ export class NavbarComponent {
       this.isLoggedIn = true;
       if (decoded.user.rol === 'user') {
         this.userRole = true;
+      }
+      if (decoded.user.rol === 'admin') {
+        this.admin = true;
       }
     }else{
       this.isLoggedIn = false;

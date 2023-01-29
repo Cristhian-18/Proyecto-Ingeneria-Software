@@ -38,6 +38,7 @@ export class FavoritosComponent implements OnInit {
     this.info_modal = true;
   }
 
+
   deleteFavorito(id: number) {
     Swal.fire({
       title: 'Seguro que quieres borrarlo?',
@@ -69,6 +70,4 @@ export class FavoritosComponent implements OnInit {
       }
     })
   }
-
-
 }
