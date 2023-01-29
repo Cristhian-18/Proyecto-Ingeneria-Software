@@ -7,7 +7,6 @@ import { ConexMarcaService,Marca } from 'src/app/services/conexiones/conex-marca
   styleUrls: ['./modificar-marca.component.css']
 })
 export class ModificarMarcaComponent implements OnInit {
-  detalle:any={};
   /*
   cargar:any={
     id:0,
@@ -21,7 +20,7 @@ cargar:any=[];
 
   constructor( private conexion:ConexMarcaService) {
 
-    this.conexion.disparadorDetalle.subscribe(data=>{
+    this.conexion.disparadorMODIFICARMARCA.subscribe(data=>{
        this.conexion.getUnmARCA(data).subscribe(
         res=>{
           console.log(res)         
@@ -41,9 +40,7 @@ cargar:any=[];
 } 
   id_entrada:number=0;
 
-  ngOnInit(): void { 
-   
-  }
+ 
   
   modificar(id:number,nombre:string,descripcion:string){
     //Extrae text//
@@ -58,6 +55,11 @@ cargar:any=[];
          console.log(res);       
        },
        err=>console.log(err)
-     );   
+     );
+    
   } 
+  ngOnInit(): void { 
+    
+  }
+  
 }

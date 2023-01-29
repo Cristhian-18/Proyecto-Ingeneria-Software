@@ -45,13 +45,13 @@ export class TablaMarcaComponent implements OnInit {
   getNombres(id:number){
     this.dataEntrante = id;
     console.log("ID: ",id);
-    this.ConexProdcutoService.disparadorDetalle.emit(this.dataEntrante)
+    this.ConexProdcutoService.disparadorMODIFICARMARCA.emit(this.dataEntrante)
   } 
   getIndex(id2:number){
     this.index=id2;
     this.dataEntrante2 = id2;
     console.log("ID: ",id2);
-    this.ConexProdcutoService.disparadorDetalle.emit(this.dataEntrante2)
+    this.ConexProdcutoService.disparadorMODIFICARMARCA.emit(this.dataEntrante2)
   }
   enviar(){
     

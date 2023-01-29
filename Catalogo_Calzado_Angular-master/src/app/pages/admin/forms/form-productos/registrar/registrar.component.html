@@ -15,9 +15,9 @@
                                 <!-- text input -->
                                 <div class="form-group">
                                     <div class="form-group">
-                                        <label alt="codigo">Código del producto</label>
-                                        <input [(ngModel)]="Producto.codigo_producto" type="text" class="form-control"
-                                            name="Codigo" placeholder="Ingrese el codigo del producto">
+                                        <label alt="codigodelproducto">Código del producto</label>
+                                            <input [(ngModel)]="Producto.codigo_producto" type="text" class="form-control"
+                                                name="Código del producto" placeholder="Ingrese el Código del producto">
                                     </div>
                                 </div>
                             </div>
@@ -49,6 +49,7 @@
                                         <label alt="marcasproducto" class="font-weight-bold">Marcas</label>
                                         <select #comboBox1 class="custom-select form-control-border"
                                             (change)="obtenerMarca(comboBox1.value)">
+                                            <option >Seleccione una Marca</option>
                                             <option *ngFor="let ListaMarca of ListaMarca"
                                                 value="{{ListaMarca.id_Marca}}">{{ListaMarca.nombre}}</option>
                                         </select>
@@ -64,9 +65,8 @@
                                         <label>Tipo de persona</label>
                                         <select #comboBox2 class="custom-select form-control-border"
                                             (change)="obtenercGenero(comboBox2.value)">
-                                            <option value="Hombre">Hombre</option>
-                                            <option value="Mujer">Mujer</option>
-                                            <option value="Niños">Niños</option>
+                                            <option >Seleccione Genero</option>
+                                            <option *ngFor="let ListaGenero of ListaGenero" value="{{ListaGenero.genero}}">{{ListaGenero.genero}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -84,6 +84,7 @@
                             <label>Categoría</label>
                             <select #comboBox3 class="custom-select form-control-border"
                                 (change)="obtenercategoria(comboBox3.value)">
+                                <option >Seleccione una Categoria</option>
                                 <option alt="cargarcategoria" *ngFor="let ListaCategoria of ListaCategoria"
                                     value="{{ListaCategoria.pk_nombre_cat}}">{{ListaCategoria.pk_nombre_cat}}</option>
                             </select>

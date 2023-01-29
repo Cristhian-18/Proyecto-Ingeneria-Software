@@ -5,7 +5,7 @@ import{HttpClient} from '@angular/common/http';
   providedIn: 'root'
 })
 export class ConexMarcaService {
-  @Output() disparadorDetalle: EventEmitter<any> = new EventEmitter();
+  @Output() disparadorMODIFICARMARCA: EventEmitter<any> = new EventEmitter();
   url='http://34.27.188.160/marca';
   constructor(private http:HttpClient) { }
 

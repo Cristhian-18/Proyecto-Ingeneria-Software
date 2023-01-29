@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConexMarcaService,Marca } from 'src/app/services/conexiones/conex-marca/conex-marca.service';
-import { ConexProductosService, Producto } from 'src/app/services/conexiones/conex-productos/conex-productos.service';
+import { ConexProductosService, Producto,Genero } from 'src/app/services/conexiones/conex-productos/conex-productos.service';
 import { ConexCategoriaService,categoria } from 'src/app/services/conexiones/conex-categoria/conex-categoria.service';
 
 @Component({
@@ -12,6 +12,7 @@ export class RegistrarComponent implements OnInit {
 
   ListaMarca:Marca[]=[];
   ListaCategoria:categoria[]=[];
+  ListaGenero: Genero[]=[];//LISTA DE Genero
 
   modal_admin:boolean  = false;
 
@@ -43,6 +44,7 @@ export class RegistrarComponent implements OnInit {
   ngOnInit(): void {
     this.listarMarcas();
     this.listaCategoria();   
+    this.listarGenero();
   }
   
   listaCategoria()
@@ -70,7 +72,12 @@ export class RegistrarComponent implements OnInit {
     
   );
   } 
-
+  listarGenero()
+  {
+  this.ListaGenero= this.ConexProdcutoService.getGenero();
+    
+   
+  } 
   obtenercategoria(valor: string) {
     this.Producto.fk_nombre_categoria = valor; 
     console.log(valor);

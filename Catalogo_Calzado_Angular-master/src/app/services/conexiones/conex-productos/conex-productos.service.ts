@@ -1,4 +1,4 @@
-import { EventEmitter, Injectable, Output } from '@angular/core';
+import { EventEmitter, Injectable, Output, ElementRef } from '@angular/core';
 import{HttpClient} from '@angular/common/http';
 
 @Injectable({
@@ -6,7 +6,9 @@ import{HttpClient} from '@angular/common/http';
 })
 export class ConexProductosService {
   @Output() disparadorDetalle: EventEmitter<any> = new EventEmitter();
-
+  
+  
+  
   url='http://34.27.188.160/producto';
   constructor(private http:HttpClient) { }
   
@@ -39,6 +41,11 @@ export class ConexProductosService {
     return this.http.put(this.url+'/'+id,producto);
 
   };
+
+  private Genero:Genero[]=[{genero:'Hombre'},{genero:'Mujer'},{genero:'Niños'}]
+  //Listas de Genero
+  getGenero()
+  {return this.Genero};
   
 }
 console.log("Servicio en Uso PRODUCTO");
@@ -55,5 +62,10 @@ export interface Producto{
   costo:string;
   oferta:string;
   fk_nombre_categoria:string;
+};
+export interface Genero{
+  
+  genero:string; 
+  
 };
 

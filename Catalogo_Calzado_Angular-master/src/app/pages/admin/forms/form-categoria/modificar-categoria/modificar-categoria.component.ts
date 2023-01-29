@@ -31,7 +31,7 @@ export class ModificarCategoriaComponent implements OnInit {
       this.conexion.getUnCategoria(data).subscribe(
        res=>{
          console.log(res)         
-         this.cargar=<any>res;               
+         this.cargar=res;               
        },
        err => console.log('Hola')
       );
@@ -41,8 +41,7 @@ export class ModificarCategoriaComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
-  }
+
   
   modificar(id:number,nombre:string,descripcion:string){
     //Extrae text//
@@ -57,9 +56,13 @@ export class ModificarCategoriaComponent implements OnInit {
          console.log(res);       
        },
        err=>console.log(err)
-     );   
+     ); 
+     
   } 
-
+  ngOnInit(): void {
+  
+  
+  }
 
 
 }

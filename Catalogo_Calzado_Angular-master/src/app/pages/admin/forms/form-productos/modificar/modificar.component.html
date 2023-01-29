@@ -6,65 +6,52 @@
                 <h3 class="modal-title" id="exampleModalLabel">Modificación de producto</h3>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <!--Formulario para modificar : producto--->
+            <!--Formulario para registrar : producto--->
             <div class="modal-body">
-                <form *ngFor="let detalle of cargar" >
-                    <!----Cuerpo de la carta--->
+                <form *ngFor="let detalle of cargar">
                     <div class="card-body font-weight-bold">
                         <div class="row">
-                            <!----Codigo del producto---->
                             <div class="col-sm-6">
                                 <!-- text input -->
-                                <div class="form-group">                                    
+                                <div class="form-group">
                                     <div class="form-group">
-                                        <label alt="codigo">Código del producto</label>
-                                        <input class="form-control" rows="1" placeholder={{detalle.pk_id_producto}}>
-                                        <!--
-                                        <input [(ngModel)]="detalle.nombre" type="text" class="form-control" name="Código del producto" placeholder={{detalle.pk_id_producto}} > 
-                                        -->
+                                        <label alt="codigodelproducto">Código del producto</label>
+                                            <input [(ngModel)]="detalle.codigo_producto" type="text" class="form-control"
+                                                name="Código del producto" placeholder={{detalle.codigo_producto}}>
                                     </div>
                                 </div>
                             </div>
-                
-                            <!----Nombre del producto--->
+
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <div class="form-group">
                                         <label alt="nombredelproducto">Nombre del producto</label>
-                                        <input [(ngModel)]="detalle.nombre_producto" type="text" class="form-control" name="Nombre del producto" placeholder={{detalle.nombre}}> 
-                                         <!--
-                                        <input class="form-control" id="exampleInputPassword1"
-                                            placeholder={{detalle.nombre_producto}}>
-                                            -->
+                                        <input [(ngModel)]="detalle.nombre_producto" type="text" class="form-control"
+                                            name="Nombre del producto" placeholder={{detalle.nombre}}>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                
-                       
+
                         <div class="row">
-                             <!----Modelo del producto---->
                             <div class="col-sm-6">
-                                <!-- textarea -->
                                 <div class="form-group">
                                     <div class="form-group">
-                                        <label >Modelo</label>
-                                        <input [(ngModel)]="detalle.modelo" type="text" class="form-control" name="Modelo" placeholder={{detalle.modelo}}> 
+                                        <label alt="modelo">Modelo</label>
+                                        <input [(ngModel)]="detalle.modelo" type="text" class="form-control" name="Modelo" placeholder={{detalle.modelo}}>
                                     </div>
                                 </div>
                             </div>
-
-                            <!---Marca del producto o calzado---->
+                            <!-------Marca de producto----->
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <div class="form-group">
-                                        <label >Marcas</label>
-                                        <select #comboBox1 class="custom-select form-control-border" id="exampleSelectBorder" >
-                                            <option *ngFor="let ListaMarca of ListaMarca" value="{{ListaMarca.id_Marca}}" >{{ListaMarca.nombre}}</option>
-                                            <script comboBox1.[selectedIndex]="detalle.fk_marca" ></script>
-                                            <!--
-                                                <option *ngFor="let ListaMarca of ListaMarca" placeholder=detalle.fk_marca >{{detalle.fk_marca}}</option>
-                                            -->                                                    
+                                        <label alt="marcasproducto" class="font-weight-bold">Marcas</label>
+                                        <select #comboBox1 class="custom-select form-control-border"
+                                            (change)="obtenerMarca(comboBox1.value)">
+                                            
+                                            <option *ngFor="let ListaMarca of LlenarcomboMarca"
+                                                value="{{ListaMarca.id_Marca}}">{{ListaMarca.nombre}}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -72,84 +59,81 @@
                         </div>
 
                         <div class="row">
-
-                            <!---Tipo de persona para el calzado---->
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <div class="form-group">
-                                        <label >Tipo de persona</label>
-                                        <select class="custom-select form-control-border" id="exampleSelectBorder">
-                                            <option>{{detalle.genero}}</option>
-                                            <option>Hombre</option>
-                                            <option>Mujer</option>
-                                            <option>Niños</option>
+                                        <label>Tipo de persona</label>
+                                        <select #comboBox2 class="custom-select form-control-border"
+                                            (change)="obtenercGenero(comboBox2.value)">
+                                            <option *ngFor="let ListaGenero of LlenarcomboGenero" value="{{ListaGenero.genero}}">{{ListaGenero.genero}}</option>
                                         </select>
                                     </div>
                                 </div>
                             </div>
-
-                            <!---Talla correspondiente para el calzado---->
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                     <!---Entrada de datos de la talla--->
-                                    <label >Talla</label>   
-                                    <input [(ngModel)]="detalle.talla" type="text" class="form-control" name="Talla" placeholder={{detalle.talla}}> 
+                                    <label>Talla</label>
+                                    <input [(ngModel)]="detalle.talla" type="text" class="form-control" name="Talla"
+                                        placeholder={{detalle.talla}}>
                                 </div>
                             </div>
                         </div>
-                
-                        <!----Categorias del calzado---->
+
                         <div class="form-group">
-                            <label >Categoría</label>
-                            <select class="custom-select form-control-border" id="exampleSelectBorder">
-                                <option alt="cargarcategoria">{{detalle.fk_nombre_categoria}}</option>
+                            <label>Categoría</label>
+                            <select #comboBox3 class="custom-select form-control-border"
+                                (change)="obtenercategoria(comboBox3.value)">
+                               
+                                <option alt="cargarcategoria" *ngFor="let ListaCategoria of LlenarcomboCategorias"
+                                value="{{ListaCategoria.pk_nombre_cat}}">{{ListaCategoria.pk_nombre_cat}}</option>
                             </select>
                         </div>
-                        
-                        <!----Descripcion del producto o calzado---->
+
                         <div class="form-group">
                             <label>Descripción del producto</label>
-                            <textarea class="form-control" rows="3" placeholder="Descripcion">{{detalle.descripcion}}</textarea>
+                            <textarea [(ngModel)]="detalle.descripcion" type="text" class="form-control" rows="3"
+                                placeholder="Descripción del producto" name="Descripción del producto">{{detalle.descripcion}}</textarea>
                         </div>
-                        
-                        <!----Costo del producto---->
+
                         <div class="row">
                             <div class="col-sm-6">
-                                <!-- Entrada de texto del costo -->
+                                <!-- text input -->
                                 <div class="form-group">
                                     <div class="form-group">
                                         <i class="fa-solid fa-dollar-sign"></i><label>_Costo Unitario</label>
-                                        <input [(ngModel)]="detalle.costo" type="text" class="form-control" name="Costo" placeholder={{detalle.costo}}> 
+                                        <input [(ngModel)]="detalle.costo" type="text" class="form-control" rows="1"
+                                            placeholder={{detalle.costo}} name="Costo">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-sm-6">
-                                <!----Boton o check para ver si hay ofertas o no---->
                                 <div class="form-group">
                                     <label>Seleccionar</label>
-                                    <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
-                                        <input type="checkbox" class="custom-control-input" id="switchoferta">
+                                    <div
+                                        class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                                        <input #checkbox type="checkbox" class="custom-control-input" id="switchoferta"
+                                            (change)="obtenerOferta(checkbox.checked)">
                                         <label class="custom-control-label" for="switchoferta">Oferta</label>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-----Cargar imagen desde FIREBASE---->
                         <div class="form-group">
-                            <label >Cargar Imagen</label>
-                            <textarea class="form-control" rows="1" placeholder="Cargar Imagen">{{detalle.img}}</textarea>                           
-                        </div>               
-                    </div> <!----Fin del cuerpo de la carta-->
-                    
-                    <!----Botones para interactuar-->
+                            <label>Cargar Imagen</label>
+                            <textarea [(ngModel)]="detalle.img" type="text" class="form-control" rows="3"
+                                placeholder="Ingrese URL para cargar imagen" name="Cargar imagen">{{detalle.img}}</textarea>
+                        </div>
+                    </div>
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-success" data-bs-dismiss="modal">Registrar</button>
+                        <button (click)="modificar(detalle.pk_id_producto,detalle.codigo_producto,detalle.img,detalle.nombre_producto,detalle.descripcion,detalle.fk_marca,detalle.modelo,detalle.genero,
+                        detalle.talla,detalle.costo,detalle.oferta,detalle.fk_nombre_categoria)" type="button" class="btn btn-success" data-bs-dismiss="modal">Registrar</button>
                     </div>
+
                 </form>
             </div>
         </div>
-        <!--FIN del Formulario para modificar : producto--->
     </div>
 </div>

@@ -23,7 +23,7 @@ export class RegistrarMarcaComponent implements OnInit {
   constructor( private conexion:ConexMarcaService) {     
     this.ListaMarca =<any>  conexion.getMarcas();    
 
-    this.conexion.disparadorDetalle.subscribe(data=>{
+    this.conexion.disparadorMODIFICARMARCA.subscribe(data=>{
         this.detalle = data;
     })
   }
